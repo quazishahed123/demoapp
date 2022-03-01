@@ -1,0 +1,53 @@
+.carousel-caption {
+    top: 50% !important;
+    left: 50% !important;
+    transform: translate(-50%,-50%) !important;
+}
+#demo {
+    height: 800px;
+}
+
+.mr {
+    margin-right: 12px;
+}
+
+.carousel-item {
+ overflow: hidden !important;
+ img {
+     height: 800px;
+     filter: blur(2px);
+     -webkit-filter: blur(2px);
+ }
+}
+
+.display-1 {
+    font-size: 56px;
+    font-style: italic;
+    font-family: sans-serif;
+    font-weight: normal;
+}
+
+.carousel-indicators { 
+    button {
+        width: 15px !important;
+        height: 15px !important;
+    border-radius: 50% !important;
+  }
+}
+
+// .modal {
+//     margin-top: 60px;
+// }
+.modal-header {
+   
+    h4 {
+        font-size: 25px;
+        font-family: sans-serif;
+        padding-top: 12px;
+    }
+    button {
+        color: white;
+        background-color: white;
+        border-radius: 50%;
+    }
+}

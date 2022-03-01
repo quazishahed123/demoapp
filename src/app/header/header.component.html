@@ -1,0 +1,17 @@
+<div [class]="isScrolled?'container-fluid bg-primary':'container-fluid'" [ngClass]="currentPath == '/homepage'?'fixed-top':'bg-primary'">
+    <nav class="navbar navbar-expand-sm py-5">
+        <div class="container-fluid d-flex justify-content-around">
+          <a class="navbar-brand display-1" >DEMO APP</a>
+          <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#collapsibleNavbar">
+            <span class="navbar-toggler-icon"></span>
+          </button>
+          <div class="" id="collapsibleNavbar">
+            <ul class="navbar-nav">
+              <li class="nav-item" *ngFor="let menu of menus" routerLinkActive=" border-top border-white border-3" [routerLinkActiveOptions]="{exact:true}">
+                <a class="nav-link" [routerLink]="menu.url">{{ menu.label |uppercase}}</a>
+              </li>    
+            </ul>
+          </div>
+        </div>
+      </nav>
+</div>
