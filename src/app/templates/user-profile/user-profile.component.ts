@@ -25,36 +25,7 @@ export class UserProfileComponent implements OnInit {
     this.httpClient.get<any>("assets/userdata.json").subscribe((data:any)=>
      this.user1 = data
     )
-
-
-
-
-
-
-    const jsonObject: object = {
-      'City': [
-        {
-          'id': 1,
-          'name': 'Basel',
-          'founded': -200,
-          'beautiful': true,
-          'data': 123,
-          'keywords': ['Rhine', 'River']
-        },
-        {
-          'id': 1,
-          'name': 'Zurich',
-          'founded': 0,
-          'beautiful': false,
-          'data': 'no',
-          'keywords': ['Limmat', 'Lake']
-        }
-      ]
-    };
-
-
-const blob = new Blob([JSON.stringify(jsonObject)], {type : 'application/json'});
-saveAs(blob, 'abc.json');
+ 
   }
 
   uploadImage(input:any):void{
