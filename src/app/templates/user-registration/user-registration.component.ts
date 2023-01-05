@@ -5,6 +5,8 @@ import { FormArray, FormBuilder, Validators } from '@angular/forms';
 import { DomSanitizer } from '@angular/platform-browser';
 import { UserDataService } from 'src/app/services/user-data.service';
 import { Router } from '@angular/router';
+import { HttpClient,HttpHeaders } from "@angular/common/http";
+
 export interface Tag {
   name: string;
 }
@@ -12,11 +14,13 @@ export interface Tag {
   selector: 'app-user-registration',
   templateUrl: './user-registration.component.html',
   styleUrls: ['./user-registration.component.scss'],
-  
+
 })
 export class UserRegistrationComponent implements OnInit {
   @ViewChild('imgField') imgField:ElementRef|any;
   addOnBlur = true;
+  id:number=0;
+  serverUrl = "http://localhost:3000/employees";
   imgErrMsg:string="Upload Your Photo";
   isImgErr:boolean=false;
   image:any="assets/images/avatar.png";
@@ -37,6 +41,7 @@ export class UserRegistrationComponent implements OnInit {
     age:['', [Validators.required],],
     state:['',[Validators.required]],
     country:['',Validators.required],
+    // id:[ this.id],
     address:this.fb.array([]),
     image:[this.image],
     tags:[this.fruits,[Validators.required]]
@@ -45,10 +50,14 @@ export class UserRegistrationComponent implements OnInit {
     private fb:FormBuilder,
     private sanitizer:DomSanitizer,
     private userDataService:UserDataService,
-    private router:Router
+    private router:Router,
+    private httpClient: HttpClient
     ) { }
 
   ngOnInit(): void {
+    // this.httpClient.get<any>(this.serverUrl).subscribe((data)=>
+    //  this.id = data.length
+    // )
   }
 
   // check form error
@@ -126,7 +135,21 @@ export class UserRegistrationComponent implements OnInit {
       tags:this.fruits
     })
     this.userDataService.userData.next(this.userForm.value);
-    this.router.navigateByUrl('/user-profile');
+
+    let options = {
+      headers: new HttpHeaders().set(
+        'Content-Type',
+        'application/x-www-form-urlencoded'
+      )
+    };
+
+   this.httpClient.post<any>(this.serverUrl, this.userForm.value ).subscribe((data)=>
+   localStorage.setItem('id', data.id)
+    )
+    setTimeout(() => {
+      this.router.navigateByUrl('/user-profile');
+  }, 1000);  //5s
+
   }
 
 }

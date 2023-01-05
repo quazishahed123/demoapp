@@ -15,17 +15,23 @@ export class UserProfileComponent implements OnInit {
   image:string="";
   user: any;
   user1: any;
+  serverUrl = "http://localhost:3000/employees/";
+
+
   constructor(private userDataService: UserDataService, private sanitizer: DomSanitizer,private httpClient: HttpClient) { }
 
   ngOnInit(): void {
     this.userDataService.userData.subscribe(res => {
-      this.user = res; 
+      this.user = res;
       this.image=res.image;
     })
-    this.httpClient.get<any>("assets/userdata.json").subscribe((data:any)=>
+    //this.httpClient.get<any>("assets/userdata.json").subscribe((data:any)=>
+    // this.user1 = data
+    //)
+
+    this.httpClient.get<any>(this.serverUrl+localStorage.getItem('id')).subscribe((data)=>
      this.user1 = data
     )
- 
   }
 
   uploadImage(input:any):void{

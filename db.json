@@ -1,0 +1,12 @@
+{
+  "employees": [
+    {
+      "id": 1,
+      "firstName": "Shahid",
+      "lastName": "Quazi",
+      "age": "25",
+      "email": "Shahid@gmail.com",
+      "state": "Maharshtra"
+    }
+  ]
+}

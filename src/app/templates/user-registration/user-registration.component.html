@@ -9,7 +9,7 @@
             <form [formGroup]="userForm" (ngSubmit)="submit()">
                 <div class=" d-flex justify-content-between">
                     <mat-form-field appearance="outline">
-                        <mat-label>First Name</mat-label>
+                        <mat-label>First Name   </mat-label>
                         <input matInput formControlName="firstName">
                         <mat-error *ngIf="checkError('firstName').hasError('required')">
                             First Name is required !
@@ -58,12 +58,12 @@
                         <mat-error *ngIf="checkError('mobile').hasError('required')">
                             Mobile Number is required !
                         </mat-error>
-                        <mat-error *ngIf="checkError('mobile').hasError('minlength') 
+                        <mat-error *ngIf="checkError('mobile').hasError('minlength')
                                               && !checkError('mobile').hasError('required')
                                               && !checkError('mobile').hasError('pattern')">
                             Mobile number have min 10 digit !
                         </mat-error>
-                        <mat-error *ngIf="checkError('mobile').hasError('maxlength') 
+                        <mat-error *ngIf="checkError('mobile').hasError('maxlength')
                                               && !checkError('mobile').hasError('minlength')
                                               && !checkError('mobile').hasError('required')
                                               && !checkError('mobile').hasError('pattern')">
