@@ -1,6 +1,7 @@
 import { Component, ElementRef, OnInit, ViewChild } from '@angular/core';
 import { DomSanitizer, SafeUrl } from '@angular/platform-browser';
 import { UserDataService } from 'src/app/services/user-data.service';
+import { HttpClient } from "@angular/common/http";
 
 @Component({
   selector: 'app-user-profile',
@@ -13,13 +14,47 @@ export class UserProfileComponent implements OnInit {
   isImgErr:boolean=false;
   image:string="";
   user: any;
-  constructor(private userDataService: UserDataService, private sanitizer: DomSanitizer) { }
+  user1: any;
+  constructor(private userDataService: UserDataService, private sanitizer: DomSanitizer,private httpClient: HttpClient) { }
 
   ngOnInit(): void {
     this.userDataService.userData.subscribe(res => {
-      this.user = res;
+      this.user = res; 
       this.image=res.image;
     })
+    this.httpClient.get<any>("assets/userdata.json").subscribe((data:any)=>
+     this.user1 = data
+    )
+
+
+
+
+
+
+    const jsonObject: object = {
+      'City': [
+        {
+          'id': 1,
+          'name': 'Basel',
+          'founded': -200,
+          'beautiful': true,
+          'data': 123,
+          'keywords': ['Rhine', 'River']
+        },
+        {
+          'id': 1,
+          'name': 'Zurich',
+          'founded': 0,
+          'beautiful': false,
+          'data': 'no',
+          'keywords': ['Limmat', 'Lake']
+        }
+      ]
+    };
+
+
+const blob = new Blob([JSON.stringify(jsonObject)], {type : 'application/json'});
+saveAs(blob, 'abc.json');
   }
 
   uploadImage(input:any):void{
